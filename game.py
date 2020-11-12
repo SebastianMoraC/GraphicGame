@@ -2,7 +2,7 @@ import pygame, sys, json
 import player
 from pygame.draw import circle
 
-
+#Const
 
 TILEWIDTH = 0
 TILEHEIGHT = 0
@@ -13,7 +13,8 @@ WIDTH = 800
 HEIGHT = 800
 speed = 2
 trueScroll = [0,0]
-
+#---------------------------------------------------------------------------------------------------
+#Map Funtions 
 def uploadMap(map):
     #Open File
     global TILEWIDTH, TILEHEIGHT, MAPWIDTH, MAPHEIGHT, MATRIZMAP
@@ -58,6 +59,9 @@ def arrayTileSet(image):
         
     return leftFiles
 
+#---------------------------------------------------------------------------------------------------
+#Main
+
 def main():
     pygame.init()
     
@@ -76,21 +80,23 @@ def main():
     #Font and Text
     white = pygame.Color("#FFFFFF")
     fontOne = pygame.font.Font(None,37)
-    textOne = fontOne.render("Time:",0,(200,0,150))
     timeAux = 1
     while True:
-        
         screen.blit(myPlayer.clipping,myPlayer.rectClip)
+        
+        #Events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
         myPlayer.eventS(event)
         
-        timeS = pygame.time.get_ticks() //1000      #The time is miliseconds so i divide in 1000
+        #Time
+        timeS = pygame.time.get_ticks() //1000      #The time is miliseconds so we divide in 1000
         if(timeAux == timeS):
             print(timeAux)
             timeAux += 1
-
+        
+        #Draw Map
         for i in range(MAPHEIGHT):
             for j in range(MAPWIDTH):
                 numTile = MATRIZMAP[i][j]
@@ -100,8 +106,8 @@ def main():
         screen.blit(myPlayer.clipping,(myPlayer.rectClip.x,myPlayer.rectClip.y))
 
         #Count
-        count = fontOne.render("Time left: " + str(150-timeS),0,white)    #Write the cont: 
-        screen.blit(count,(625,10)) #Show the cont in the screen
+        count = fontOne.render("Time left: " + str(60-timeS),0,white)    #Write the cont: 
+        screen.blit(count,(635,5)) #Show the cont in the screen
 
         pygame.display.flip()
 
