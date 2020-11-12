@@ -93,7 +93,7 @@ def main():
         #Time
         timeS = pygame.time.get_ticks() //1000      #The time is miliseconds so we divide in 1000
         if(timeAux == timeS):
-            print(timeAux)
+            #print(timeAux)
             timeAux += 1
         
         #Draw Map
