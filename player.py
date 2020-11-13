@@ -2,6 +2,8 @@ import pygame, sys
 from pygame.draw import rect
 from pygame.locals import *
 
+WIDTH = 800
+HEIGHT = 800
 
 class Xena(pygame.sprite.Sprite):
     def __init__(self, position,speed):
@@ -34,15 +36,23 @@ class Xena(pygame.sprite.Sprite):
         if direction == "left":
             self.cut(self.statesLeft)
             self.rectClip.x -= self.speed 
+            if self.rectClip.left < 0:
+                self.rectClip.left = 0
         elif direction == "right":
             self.cut(self.statesRight)
             self.rectClip.x += self.speed 
+            if self.rectClip.right > WIDTH:
+                self.rectClip.right = WIDTH
         elif direction == "up":
             self.cut(self.statesUp)
             self.rectClip.y -= self.speed 
+            if self.rectClip.top < 0:
+                self.rectClip.top = 0
         elif direction == "down":
             self.cut(self.statesDown)
             self.rectClip.y += self.speed 
+            if self.rectClip.bottom > HEIGHT:
+                self.rectClip.bottom = HEIGHT
         
         elif direction == "stopLeft":
             self.cut(self.statesLeft[0])
